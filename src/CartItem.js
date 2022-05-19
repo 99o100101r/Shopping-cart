@@ -2,32 +2,6 @@ import React from 'react';
 
 class CartItem extends React.Component {
   
-
-    minus = () => {
-        const {Qnty} = this.props.produ;
-
-        if (Qnty=== 0) {
-            return;
-        }
-    
-        this.setState((prevState) => {
-            return {
-                Qnty: prevState.Qnty - 1
-            }
-        })
-    }
-
-    plus = () => {
-        this.setState((prevState) => {
-            return {
-                Qnty: prevState.Qnty + 1
-            }
-        })
-    }
-
-    
-    
-
     render() {
         let { price, Qnty, item } = this.props.produ;
         return (
@@ -41,15 +15,15 @@ class CartItem extends React.Component {
                     <div style={{ color: '#777' }}>price: {price} </div>
                     <div style={{ color: '#777' }}> Qnty:{Qnty} </div>
                     <div className='cart-item-actions'>
-                        <img alt='decrease' onClick={this.minus}
+                        <img alt='decrease' onClick={()=>this.props.decrease(this.props.produ)}
                             className='action-icons'
                             src='https://as2.ftcdn.net/v2/jpg/02/78/84/57/1000_F_278845758_9xl3srVgd8p4jquxgxugGaHV1e5EOlLO.jpg' />
 
-                        <img alt='increase' onClick={this.plus}
+                        <img alt='increase' onClick={()=>this.props.increase(this.props.produ)}
                             className='action-icons'
                             src='https://as1.ftcdn.net/v2/jpg/01/09/34/82/1000_F_109348261_aanUtbiqtEPzkc2Xx3SmIwIKxDBcSYMt.jpg' />
 
-                        <img alt='delete' className='action-icons'
+                        <img alt='delete'onClick={()=>this.props.delete(this.props.produ.id)} className='action-icons'
                             src='https://thumbs.dreamstime.com/z/blank-182026259.jpg' />
                     </div>
                 </div>
